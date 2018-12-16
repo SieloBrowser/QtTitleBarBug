@@ -6,3 +6,5 @@ HEADERS += \
 SOURCES += \
     Window.cpp \
     Main.cpp
+
+LIBS += -luxtheme -ldwmapi
