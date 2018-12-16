@@ -25,6 +25,7 @@ typedef HMONITOR (*tMonitorFromWindow)(HWND hWnd, DWORD dwFlags);
 typedef BOOL (*tGetMonitorInfoW)(HMONITOR hMonitor, LPMONITORINFO lpmi);
 typedef BOOL (*tGetWindowRect)(HWND hWnd, LPRECT lpRect);
 typedef BOOL (*tAdjustWindowRectEx)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle);
+typedef LONG_PTR (*tSetWindowLongPtrW)(HWND hWnd, int nIndex, LONG_PTR dwNewLong);
 
 class Window : public QMainWindow
 {
@@ -51,6 +52,7 @@ private:
     tGetMonitorInfoW pGetMonitorInfoW;
     tGetWindowRect pGetWindowRect;
     tAdjustWindowRectEx pAdjustWindowRectEx;
+    tSetWindowLongPtrW pSetWindowLongPtrW;
 
 	QWebEngineView* m_view{nullptr};
 };

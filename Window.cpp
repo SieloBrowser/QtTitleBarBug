@@ -50,6 +50,7 @@ void Window::setupUI()
             pGetMonitorInfoW = reinterpret_cast<tGetMonitorInfoW>(user32.resolve("GetMonitorInfoW"));
             pGetWindowRect = reinterpret_cast<tGetWindowRect>(user32.resolve("GetWindowRect"));
             pAdjustWindowRectEx = reinterpret_cast<tAdjustWindowRectEx>(user32.resolve("AdjustWindowRectEx"));
+            pSetWindowLongPtrW = reinterpret_cast<tSetWindowLongPtrW>(user32.resolve("SetWindowLongPtrW"));
         }
     }
     {
@@ -62,6 +63,11 @@ void Window::setupUI()
                 dwmApi.resolve("DwmIsCompositionEnabled"));
         }
     }
+
+    setWindowFlags(Qt::FramelessWindowHint);
+    pSetWindowLongPtrW(reinterpret_cast<HWND>(winId()), GWL_STYLE, WS_POPUP | WS_THICKFRAME | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
+    const WMargins margins = {1,1,1,1};
+    pDwmExtendFrameIntoClientArea(reinterpret_cast<HWND>(winId()), &margins);
 
 	resize(1024, 723);
 
