@@ -1,10 +1,10 @@
-QT += widgets webenginewidgets
+QT += core gui widgets
 
 HEADERS += \
-    Window.hpp
+    openglwindow.h
 
 SOURCES += \
-    Window.cpp \
-    Main.cpp
+    Main.cpp \
+    openglwindow.cpp
 
-LIBS += -luxtheme -ldwmapi
+LIBS += -lOpenGL32
